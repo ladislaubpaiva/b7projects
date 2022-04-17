@@ -14,10 +14,10 @@
     "semi": ["error", "always"],
     "quotes": ["error", "single"],
     "import/prefer-default-export": "off",
-    "no-use-before-define": ["error", { "variables": true }],
-    "no-restricted-syntax": ["error", "FunctionExpression", "WithStatement", "BinaryExpression[operator='in']"],
+    "no-use-before-define": ["error", { "variables": true, "functions": false }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
-    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+    "no-restricted-syntax": ["error", "FunctionExpression", "WithStatement", "BinaryExpression[operator='in']"]
   }
 }

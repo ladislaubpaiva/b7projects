@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  text-align: center;
+  color: #fff;
+  background-color: #006aff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+main {
+  padding: 20px;
+}
+/*Header*/
+header.container {
+  font-family: sans-serif;
+  font-variant: small-caps;
+}
+section.card {
+  margin: auto;
+  padding: 15px;
+  width: 700px;
+  max-width: 600px;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font: normal 1rem Arial;
+}
+.search #searchInput {
+  flex: 1;
+  padding: 10px;
+  outline: none;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 0;
+}
+.search button {
+  padding: 10px;
+  font-size: 15px;
+  border: 0;
+  background-color: #555;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.search button:hover {
+  background-color: #333;
+  cursor: pointer;
+}
+.profileInfo {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px rgba(6, 6, 6, 0.2);
+  display: none;
+  gap: 10px;
+}
+.profileImg {
+  flex: 1;
+}
+.profileImg img {
+  border-radius: 50%;
+  width: 100%;
+}
+.profileInfo .content {
+  flex: 2;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px;
+  font-size: 0.9em;
+}
+.bio-content {
+  font-weight: normal;
+}
+
+.content span {
+  font-weight: normal;
+}
+.content .extra {
+  display: inline;
+}
+
+footer.container {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.3em;
+}

@@ -1,57 +1,91 @@
-// || Initial Data
-const selector = (e) => document.querySelector(e);
-const selectorAll = (e) => document.querySelectorAll(e);
-let currentColor = 'black';
-let canDraw = false;
-const screen = selector('#tela');
-const context = screen.getContext('2d');
-let mouseX;
-let mouseY;
-// || Events
-selectorAll('.colorArea .color').forEach((item) => {
-  item.addEventListener('click', colorClickEvent);
-});
-screen.addEventListener('mousedown', mouseDownEvent);
-screen.addEventListener('mousemove', mouseMoveEvent);
-screen.addEventListener('mouseup', mouseUpEvent);
-selector('.clear').addEventListener('click', () => {
-  context.setTransform(1, 0, 0, 1, 0, 0);
-  context.clearRect(0, 0, context.canvas.width, context.canvas.width);
+const canvas = document.querySelector('#screen');
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+window.addEventListener('resize', () => {
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
 });
 
-// || Functions
-function colorClickEvent(e) {
-  const color = e.target.getAttribute('data-color');
-  currentColor = color;
-  selector('.color.active').classList.remove('active');
-  e.target.classList.add('active');
-}
+let currentOption = 'pencil';
+window.addEventListener('load', () => {
+  const screen = canvas.getContext('2d');
+  const sizeButton = document.querySelector('.bx-font-size.option');
+  const rangeArea = document.querySelector('.rangeArea');
 
-function mouseDownEvent(e) {
-  canDraw = true;
-  mouseX = e.pageX - screen.offsetLeft;
-  mouseY = e.pageY - screen.offsetTop;
-}
-function mouseMoveEvent(e) {
-  if (canDraw) {
-    draw(e.pageX, e.pageY);
+  let canDraw = false;
+  let currentColor = 'black';
+  let pencilSize = 1;
+  let eraserSize = 1;
+
+  document.querySelectorAll('.colorArea .color').forEach((item) => {
+    item.addEventListener('click', (e) => {
+      const color = e.target.getAttribute('data-color');
+      currentColor = color;
+      document.querySelector('.color.active').classList.remove('active');
+      e.target.classList.add('active');
+    });
+  });
+  document.querySelectorAll('.optionsArea .option.type').forEach((item) => {
+    item.addEventListener('click', (e) => {
+      const opt = e.currentTarget.getAttribute('data-opt');
+      currentOption = opt;
+      document.querySelector('.option.active').classList.remove('active');
+      e.target.classList.add('active');
+    });
+  });
+
+  document.querySelector('#pencilSize').addEventListener('change', (e) => {
+    pencilSize = e.currentTarget.value;
+  });
+  document.querySelector('#eraserSize').addEventListener('change', (e) => {
+    eraserSize = e.currentTarget.value;
+  });
+
+  document.querySelector('.clear').addEventListener('click', () => {
+    screen.setTransform(1, 0, 0, 1, 0, 0);
+    screen.clearRect(0, 0, screen.canvas.width, screen.canvas.width);
+  });
+
+  function startDraw(e) {
+    canDraw = true;
+    if (currentOption === 'pencil') {
+      draw(e, currentColor, pencilSize);
+    } else {
+      draw(e, 'white', eraserSize);
+    }
   }
-}
-function mouseUpEvent() {
-  canDraw = false;
-}
-function draw(x, y) {
-  const pointX = x - screen.offsetLeft;
-  const pointY = y - screen.offsetTop;
+  function draw(e, color, size) {
+    if (!canDraw) return;
+    screen.lineWidth = size;
+    screen.lineCap = 'round';
+    screen.lineTo(e.clientX, e.clientY);
+    screen.stroke();
+    screen.beginPath();
+    screen.strokeStyle = color;
+    screen.moveTo(e.clientX, e.clientY);
+  }
+  function finishDraw() {
+    canDraw = false;
+    screen.closePath();
+    screen.beginPath();
+  }
 
-  context.beginPath();
-  context.lineWidth = 5;
-  context.lineJoin = 'round';
-  context.moveTo(mouseX, mouseY);
-  context.lineTo(pointX, pointY);
-  context.closePath();
-  context.strokeStyle = currentColor;
-  context.stroke();
-  mouseX = pointX;
-  mouseY = pointY;
-}
+  function sizeOptions(e) {
+    const el = e.currentTarget;
+    const state = el.getAttribute('data-state') === 'close';
+    if (!state) {
+      el.style.color = '';
+      el.setAttribute('data-state', 'close');
+    } else {
+      el.style.color = 'blue';
+      el.setAttribute('data-state', 'open');
+    }
+    rangeArea.classList.toggle('show');
+  }
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mouseup', finishDraw);
+  canvas.addEventListener('mousemove', draw);
+
+  sizeButton.addEventListener('click', sizeOptions);
+});

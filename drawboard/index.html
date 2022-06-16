@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Desenhando no Canvas</title>
+    <title>DrawBoard</title>
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Desenhando no Canvas</h1>
-
-    <canvas id="tela" width="800" height="400"></canvas>
-
+    <canvas id="screen"></canvas>
     <div class="colorArea">
       <div data-color="black" style="background-color: black" class="color active"></div>
       <div data-color="blue" style="background-color: blue" class="color"></div>
@@ -20,11 +19,35 @@
       <div data-color="yellow" style="background-color: yellow" class="color"></div>
       <div data-color="gray" style="background-color: gray" class="color"></div>
     </div>
-
-    <button class="clear">Limpar Quadro</button>
-
-    <footer>Criado por Ladislau Paiva</footer>
-
+    <div class="optionsArea">
+      <div class="options">
+        <i class="bx bxs-pencil option active type" title="Pencil" data-opt="pencil"></i>
+        <i class="bx bxs-eraser option type" title="Eraser" data-opt="eraser"></i>
+        <i class="bx bx-font-size option" title="Size" data-state="close"></i>
+        <div class="rangeArea">
+          <div class="sizeOption">
+            <label for="pencilSize">
+              <i class="bx bxs-pencil"></i>
+            </label>
+            <input type="range" min="1" value="1" max="100" id="pencilSize" />
+          </div>
+          <div class="sizeOption">
+            <label for="eraserSize">
+              <i class="bx bxs-eraser" title="Eraser"></i>
+            </label>
+            <input type="range" min="1" value="1" max="100" id="eraserSize" />
+          </div>
+        </div>
+        <button class="clear">Clear All</button>
+      </div>
+    </div>
+    <div class="pagesArea">
+      <div class="option"><i class="bx bx-plus-circle"></i></div>
+      <div class="option"><i class="bx bxs-chevron-left"></i></div>
+      <div class="option"><i class="bx bxs-chevron-right"></i></div>
+      <div class="option"><i class="bx bx-trash"></i></div>
+    </div>
     <script src="script.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   </body>
 </html>

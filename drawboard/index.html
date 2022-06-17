@@ -4,26 +4,37 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DrawBoard</title>
+    <title>DrawBoard - Made by Ladislau & Eduardo</title>
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <canvas id="screen"></canvas>
-    <div class="colorArea">
-      <div data-color="black" style="background-color: black" class="color active"></div>
-      <div data-color="blue" style="background-color: blue" class="color"></div>
-      <div data-color="red" style="background-color: red" class="color"></div>
-      <div data-color="green" style="background-color: green" class="color"></div>
-      <div data-color="yellow" style="background-color: yellow" class="color"></div>
-      <div data-color="gray" style="background-color: gray" class="color"></div>
-    </div>
-    <div class="optionsArea">
-      <div class="options">
-        <i class="bx bxs-pencil option active type" title="Pencil" data-opt="pencil"></i>
-        <i class="bx bxs-eraser option type" title="Eraser" data-opt="eraser"></i>
-        <i class="bx bx-font-size option" title="Size" data-state="close"></i>
+    <template>
+      <li class="tab" data-tab=""><span>Board</span><i class="bx bx-x"></i></li>
+      <canvas class="canvas" data-canvas=""></canvas>
+    </template>
+    <header>
+      <nav>
+        <ul class="tabs">
+          <li class="tab active" data-tab="1" id="default"><span>Board</span><i class="bx bx-x"></i></li>
+          <li class="tab create"><i class="bx bx-plus"></i></li>
+        </ul>
+      </nav>
+      <div class="settings">
+        <div class="colorArea">
+          <div data-color="black" style="background-color: black" class="color active"></div>
+          <div data-color="blue" style="background-color: blue" class="color"></div>
+          <div data-color="red" style="background-color: red" class="color"></div>
+          <div data-color="green" style="background-color: green" class="color"></div>
+          <div data-color="yellow" style="background-color: yellow" class="color"></div>
+          <div data-color="gray" style="background-color: gray" class="color"></div>
+        </div>
+        <div class="optionsArea">
+          <i class="bx bxs-pencil option active type" title="Pencil" data-opt="pencil"></i>
+          <i class="bx bxs-eraser option type" title="Eraser" data-opt="eraser"></i>
+          <i class="bx bx-font-size option" title="Size" data-state="close"></i>
+          <button class="clear">Clear All</button>
+        </div>
         <div class="rangeArea">
           <div class="sizeOption">
             <label for="pencilSize">
@@ -38,16 +49,11 @@
             <input type="range" min="1" value="1" max="100" id="eraserSize" />
           </div>
         </div>
-        <button class="clear">Clear All</button>
       </div>
-    </div>
-    <div class="pagesArea">
-      <div class="option"><i class="bx bx-plus-circle"></i></div>
-      <div class="option"><i class="bx bxs-chevron-left"></i></div>
-      <div class="option"><i class="bx bxs-chevron-right"></i></div>
-      <div class="option"><i class="bx bx-trash"></i></div>
+    </header>
+    <div class="canvasTabs">
+      <canvas class="canvas" data-canvas="1"></canvas>
     </div>
     <script src="script.js"></script>
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   </body>
 </html>

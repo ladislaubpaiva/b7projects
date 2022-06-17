@@ -7,16 +7,16 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
 });
 
-let currentOption = 'pencil';
 window.addEventListener('load', () => {
   const screen = canvas.getContext('2d');
   const sizeButton = document.querySelector('.bx-font-size.option');
   const rangeArea = document.querySelector('.rangeArea');
 
   let canDraw = false;
+  let currentOption = 'pencil';
   let currentColor = 'black';
   let pencilSize = 1;
-  let eraserSize = 1;
+  let eraserSize = 2;
 
   document.querySelectorAll('.colorArea .color').forEach((item) => {
     item.addEventListener('click', (e) => {
@@ -30,6 +30,11 @@ window.addEventListener('load', () => {
     item.addEventListener('click', (e) => {
       const opt = e.currentTarget.getAttribute('data-opt');
       currentOption = opt;
+      if (opt === 'pencil') {
+        canvas.style.cursor = '';
+      } else {
+        canvas.style.cursor = "url('imgs/cursor.svg'), auto";
+      }
       document.querySelector('.option.active').classList.remove('active');
       e.target.classList.add('active');
     });

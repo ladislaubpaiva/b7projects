@@ -28,6 +28,7 @@ body {
 .colorArea {
   left: 0;
   top: 0;
+  z-index: 1;
   display: flex;
   gap: 0.5rem;
   height: 56px;
@@ -49,6 +50,7 @@ body {
 .optionsArea {
   right: 0;
   top: 0;
+  z-index: 1;
   width: 296px;
   display: flex;
   position: absolute;
@@ -123,6 +125,7 @@ body {
   height: 56px;
   display: flex;
   padding: 1rem;
+  z-index: 1;
   align-items: center;
   transform: translateX(-50%);
   border-radius: 0 0 1rem 1rem;

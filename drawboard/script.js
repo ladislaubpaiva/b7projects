@@ -174,3 +174,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   sizeButton.addEventListener('click', sizeOptions);
 });
+
+document.querySelector('dialog button').addEventListener('click', (e) => {
+  e.currentTarget.parentNode.removeAttribute('open');
+});
